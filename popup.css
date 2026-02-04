@@ -1,0 +1,562 @@
+:root {
+  --bg: #fffaf2;
+  --card: #ffffff;
+  --accent: #ffb703;
+  --accent-dark: #fb8500;
+  --shadow-light: rgba(255,255,255,0.9);
+  --shadow-dark: rgba(0,0,0,0.15);
+}
+/* ================= HIDE SCROLLBAR (POPUP SAFE) ================= */
+
+/* Chrome, Edge, Safari */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Firefox */
+html,
+body {
+  scrollbar-width: none;
+}
+
+/* IE / old Edge */
+html,
+body {
+  -ms-overflow-style: none;
+}
+
+/* Keep scrolling enabled */
+html,
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: linear-gradient(145deg, #fffdf8, #fff3dd);
+  width: 320px;
+  margin: 0;
+  padding: 12px;
+  color: #333;
+  perspective: none;
+}
+
+/* ================= TOP BAR ================= */
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  padding: 10px 12px;
+  border-radius: 14px;
+  box-shadow:
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
+  transform-style: preserve-3d;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ================= FLASHMAN 3D ================= */
+
+/* ================= FLASHMAN (CINEMATIC CORE) ================= */
+
+.flashman {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #fff3bf, #fb8500);
+  box-shadow:
+    inset -4px -6px 10px rgba(0,0,0,.25),
+    inset 4px 4px 10px rgba(255,255,255,.6),
+    0 12px 28px rgba(251,133,0,.55);
+
+  animation:
+    flashmanFloat 2.8s ease-in-out infinite,
+    flashmanPulse 1.8s ease-in-out infinite;
+}
+
+/* Energy ring */
+.flashman::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent,
+      rgba(255,183,3,.6),
+      transparent
+    );
+  filter: blur(6px);
+  animation: flashmanSpin 3s linear infinite;
+}
+
+/* Outer glow aura */
+.flashman::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,183,3,.45),
+      transparent 70%
+    );
+  filter: blur(14px);
+  animation: flashmanGlow 2.4s ease-in-out infinite;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes flashmanFloat {
+  0%,100% {
+    transform: translateZ(20px) translateY(0);
+  }
+  50% {
+    transform: translateZ(34px) translateY(-6px);
+  }
+}
+
+@keyframes flashmanPulse {
+  0%,100% {
+    box-shadow: 0 0 24px rgba(251,133,0,.45);
+  }
+  50% {
+    box-shadow: 0 0 42px rgba(251,133,0,.75);
+  }
+}
+
+@keyframes flashmanGlow {
+  0%,100% {
+    opacity: .5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .9;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes flashmanSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= SECTIONS ================= */
+
+section {
+  margin-top: 12px;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow:
+    6px 6px 14px var(--shadow-dark),
+    -6px -6px 14px var(--shadow-light);
+}
+
+/* ================= PLATFORMS ================= */
+
+.grid label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 6px 0;
+  background: linear-gradient(145deg, #fff, #f7f0e8);
+  border-radius: 12px;
+  box-shadow:
+    inset 3px 3px 6px rgba(0,0,0,.08),
+    inset -3px -3px 6px rgba(255,255,255,.9);
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.grid label:hover {
+  transform: scale(1.02);
+  box-shadow:
+    10px 10px 20px rgba(0,0,0,.18);
+}
+
+/* Toggle switch */
+.grid input {
+  appearance: none;
+  width: 42px;
+  height: 22px;
+  background: #ddd;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.grid input::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,.2);
+  transition: .3s;
+}
+
+.grid input:checked {
+  background: linear-gradient(145deg, var(--accent), var(--accent-dark));
+}
+
+.grid input:checked::before {
+  transform: translateX(20px);
+}
+
+/* ================= MODES ================= */
+
+.modes button {
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  background: linear-gradient(145deg, #fff1d6, #ffd8a8);
+  box-shadow:
+    6px 6px 14px rgba(0,0,0,.15),
+    -6px -6px 14px rgba(255,255,255,.9);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.modes button:hover {
+  transform: translateZ(-2px);
+}
+
+.modes button:active {
+  transform: translateZ(2px);
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,.25);
+}
+
+/* ================= MANUAL INPUT ================= */
+
+.manual {
+  display: flex;
+  gap: 6px;
+}
+
+/* ================= SEARCH INPUT ================= */
+
+.manual input {
+  width: 97%;
+  position: relative;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: none;
+  font-size: 14px;
+  background: linear-gradient(145deg, #fffdf8, #f7efdf);
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,.15),
+    inset -4px -4px 8px rgba(255,255,255,.85);
+  transition:
+    box-shadow .25s cubic-bezier(.2,1,.3,1),
+    transform .25s cubic-bezier(.2,1,.3,1),
+    background .25s ease;
+  outline: none;
+}
+
+/* ✨ Focus = lift + glow */
+.manual input:focus {
+  background: linear-gradient(145deg, #ffffff, #fff7e6);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 2px 2px 6px rgba(0,0,0,.15),
+    inset -2px -2px 6px rgba(255,255,255,.9),
+    0 0 0 2px rgba(255,183,3,.45),
+    0 12px 24px rgba(251,133,0,.25);
+}
+
+/* 🔥 Focus pulse (life) */
+.manual input:focus {
+  animation: inputPulse 1.8s ease-in-out infinite;
+}
+
+/* ❌ Invalid shake (optional: add .invalid via JS) */
+.manual input.invalid {
+  animation: inputShake .35s;
+  box-shadow:
+    0 0 0 2px rgba(255,107,107,.6),
+    0 10px 20px rgba(255,107,107,.35);
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes inputPulse {
+  0%,100% {
+    box-shadow:
+      0 0 0 2px rgba(255,183,3,.35),
+      0 10px 22px rgba(251,133,0,.25);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(255,183,3,.55),
+      0 14px 30px rgba(251,133,0,.4);
+  }
+}
+
+@keyframes inputShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+
+/* ================= ADD BUTTON ================= */
+
+.manual button {
+  position: relative;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(145deg, #ffb703, #fb8500);
+  box-shadow:
+    6px 6px 14px rgba(0,0,0,.25),
+    -4px -4px 10px rgba(255,255,255,.4);
+  cursor: pointer;
+  overflow: hidden;
+  transform-style: preserve-3d;
+
+  transition:
+    transform .18s cubic-bezier(.2,1,.3,1),
+    box-shadow .18s cubic-bezier(.2,1,.3,1),
+    background .18s ease;
+}
+
+/* ✨ Hover lift + glow */
+.manual button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    10px 10px 20px rgba(0,0,0,.3),
+    -6px -6px 16px rgba(255,255,255,.5);
+  background: linear-gradient(145deg, #ffd166, #fb8500);
+}
+
+/* 💥 Press effect */
+.manual button:active {
+  transform: translateY(2px) scale(.96);
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,.35),
+    inset -4px -4px 8px rgba(255,255,255,.4);
+}
+
+/* ⚡ Light sweep */
+.manual button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255,255,255,.6),
+      transparent 70%
+    );
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+}
+
+.manual button:hover::after {
+  transform: translateX(120%);
+}
+
+/* 🔥 Idle pulse (subtle life) */
+.manual button {
+  animation: addPulse 3s ease-in-out infinite;
+}
+
+@keyframes addPulse {
+  0%,100% {
+    box-shadow:
+      6px 6px 14px rgba(0,0,0,.25),
+      -4px -4px 10px rgba(255,255,255,.4);
+  }
+  50% {
+    box-shadow:
+      8px 8px 18px rgba(251,133,0,.35),
+      -6px -6px 14px rgba(255,255,255,.6);
+  }
+}
+
+
+/* ================= FOOTER ================= */
+
+.danger {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  background: linear-gradient(145deg, #ff8787, #ff6b6b);
+  color: white;
+  cursor: pointer;
+  contain: paint;
+  will-change: transform;
+  box-shadow:
+    6px 6px 16px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.25);
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    background .15s ease;
+}
+
+/* soft hover lift */
+.danger:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    8px 8px 20px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.3);
+}
+
+/* gentle press */
+.danger:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 4px 4px 10px rgba(0,0,0,.35);
+}
+
+/* subtle click feedback (light ripple) */
+.danger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at center,
+      rgba(255,255,255,.35),
+      transparent 60%);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.danger:hover:active::after {
+  opacity: 1;
+}
+/* ================= TRADEMARK FOOTER ================= */
+
+.tm-footer {
+  margin-top: 14px;
+  padding-top: 8px;
+  text-align: center;
+  font-size: 11px;
+  color: #666;
+  opacity: 0.75;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  user-select: none;
+}
+
+/* subtle fade-in */
+.tm-footer {
+  animation: footerFade 0.5s ease;
+}
+
+@keyframes footerFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 0.75;
+    transform: translateY(0);
+  }
+}
+
+
+.close-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(145deg, #fff, #f1f1f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    6px 6px 14px rgba(0,0,0,.25),
+    -6px -6px 14px rgba(255,255,255,.9);
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    background .15s ease;
+}
+
+/* Icon color */
+.close-btn svg path {
+  fill: #333;
+}
+
+/* Hover = danger hint */
+.close-btn:hover {
+  background:
+    radial-gradient(circle at 30% 30%, #ffd166, var(--accent-dark));
+  transform: translateY(-1px);
+  box-shadow:
+    8px 8px 18px rgba(0,0,0,.3),
+    -8px -8px 18px rgba(255,255,255,.9);
+}
+
+.close-btn:hover svg path {
+  fill: #fff;
+}
+
+/* Active press */
+.close-btn:active {
+  transform: translateY(2px) scale(.96);
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,.35),
+    inset -4px -4px 8px rgba(255,255,255,.6);
+}
+
+/* Subtle shake on hover */
+.close-btn:hover {
+  animation: dangerShake .3s;
+}
+
+@keyframes dangerShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  50% { transform: translateX(1px); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+/* ================= TOGGLE HIT FIX ================= */
+.grid label {
+  pointer-events: none;
+}
+
+.grid input {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
