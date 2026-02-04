@@ -28,22 +28,39 @@ A lightweight Chrome Extension to block distracting websites and boost productiv
 
 Focus-Guard/
 │
+
 ├── manifest.json
+
 ├── background.js
+
 ├── popup.html
+
 ├── popup.css
+
 ├── popup.js
+
 ├── blocked.html
+
 │
+
 ├── icons/
+
 │ ├── icon16.png
+
 │ ├── icon32.png
+
 │ ├── icon48.png
+
 │ ├── icon64.png
+
 │ ├── icon128.png
+
 │ ├── icon256.png
+
 │ └── icon512.png
+
 │
+
 └── README.md
 
 
